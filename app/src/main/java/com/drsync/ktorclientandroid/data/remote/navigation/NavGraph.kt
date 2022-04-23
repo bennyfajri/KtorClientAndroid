@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.drsync.ktorclientandroid.data.remote.screen.HomeScreen
+import com.drsync.ktorclientandroid.data.remote.screen.InputDetailScreen
 import com.drsync.ktorclientandroid.data.remote.screen.ListDataScreen
 import com.drsync.ktorclientandroid.data.remote.screen.SendDataScreen
 
@@ -23,7 +24,10 @@ fun SetupNavGraph(
             ListDataScreen()
         }
         composable(route = Screen.SendDataScreen.route) {
-            SendDataScreen()
+            SendDataScreen(navHostController = navHostController)
+        }
+        composable(route = Screen.InputDetailScreen.route) {
+            InputDetailScreen()
         }
     }
 }
