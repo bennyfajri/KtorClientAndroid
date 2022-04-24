@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.drsync.ktorclientandroid.data.remote.PostService
 import com.drsync.ktorclientandroid.data.remote.dto.PostRequest
+import com.drsync.ktorclientandroid.data.remote.dto.PostResponse
 import com.drsync.ktorclientandroid.data.remote.navigation.Screen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -81,12 +82,17 @@ fun SendDataScreen(
                     body = bodyState
                 )
                 scope.launch {
-                    service.createPost(postRequest)
+                    val response = service.createPost(postRequest)
                     Toast.makeText(context, "Berhasil Input Data", Toast.LENGTH_SHORT)
                         .show()
                     delay(2500)
+                    navHostController.currentBackStackEntry?.savedStateHandle?.set(
+                        "post",
+                        response
+                    )
+                    navHostController.navigate(Screen.InputDetailScreen.route)
                 }
-//                navHostController.navigate(Screen.InputDetailScreen.route)
+
             },
             modifier = Modifier.fillMaxWidth()
         ) {

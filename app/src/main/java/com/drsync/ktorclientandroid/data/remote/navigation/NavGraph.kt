@@ -27,7 +27,7 @@ fun SetupNavGraph(
             SendDataScreen(navHostController = navHostController)
         }
         composable(route = Screen.InputDetailScreen.route) {
-            InputDetailScreen()
+            InputDetailScreen(navHostController = navHostController)
         }
     }
 }
